@@ -21,6 +21,7 @@
 
  ## Enter the source directory and patch the source code.
  cd gcc-$GCC_VERSION
+ patch -p1 < ../../patches/gcc-$GCC_VERSION-macos-xcode9.patch
  patch -p1 -i ../../patches/gcc-$GCC_VERSION-PSP.patch
  patch -p0 -i ../../patches/patch-gcc_cp_cfns.h
 

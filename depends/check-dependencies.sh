@@ -8,7 +8,10 @@ header_paths=(
     "/usr/include/$(uname -m)-linux-gnu" \
     "/usr/local/include/$(uname -m)-linux-gnu" \
     "/usr/include/i386-linux-gnu" \
-    "/usr/local/include/i386-linux-gnu"
+    "/usr/local/include/i386-linux-gnu" \
+    "/usr/local/opt/ncurses/include" \
+    "/usr/local/opt/zlib/include" \
+    "/usr/local/opt/readline/include"
     # -- Add more locations here --
 )
 
@@ -26,7 +29,7 @@ function check_header
             [ -f "$place/$name" ] && return 0
         done
     done
-    
+
     missing_depends+=($1); return 1
 }
 
@@ -49,7 +52,7 @@ function check_program
     for place in ${PATH//:/ }; do
         [ -x "$place/$binary" ] || [ -x "$place/$binary.exe" ] && return 0
     done
-    
+
     missing_depends+=($1); return 1
 }
 
@@ -58,7 +61,7 @@ function check_aclocal
     for place in ${aclocal_paths[@]}; do
         [ -f "$place/$2" ] && return 0
     done
-    
+
     missing_depends+=($1); return 1
 }
 
